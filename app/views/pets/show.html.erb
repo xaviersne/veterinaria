@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -6,35 +7,60 @@
 </p>
 
 <p>
-  <strong>Race:</strong>
-  <%= @pet.race %>
+  <strong>Breed:</strong>
+  <%= @pet.breed %>
 </p>
 
 <p>
   <strong>Birthdate:</strong>
   <%= @pet.birthdate %>
 </p>
+<p>
+  <strong>Visits:</strong>
+  <%= @pet.historyCount %>
+</p>
+<div class="container">
+  <h1>History</h1>
+  <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Weight</th>
+            <th>Heigth</th>
+            <th>Description</th>
+          </tr>
+        </thead>
 
+      <tbody>
+          <% @pet.pet_histories.each do |pet_history| %>
+            <tr>
+              <td><%= pet_history.weight %></td>
+              <td><%= pet_history.heigth %></td>
+              <td><%= pet_history.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+  </table>
+  <h1>Datos</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Peso promedio</th>
+        <th>Altura promedio</th>
+        <th>Peso Máximo</th>
+        <th>Altura Máxima</th>
+      </tr>
+    </thead>
+      
+    <tbody>
+      <tr>
+        <td><%= @pet.avgWeight %></td>
+        <td><%= @pet.avgHeight %></td>
+        <td><%= @pet.maxWeight %></td>
+        <td><%= @pet.maxHeight%></td>
+      </tr>
+    </tbody>
+  </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Peso promedio</th>
-      <th>Altura promedio</th>
-      <th>Peso Máximo</th>
-      <th>Altura Máxima</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td><%= @pet.avg_weight %></td>
-      <td><%= @pet.avg_height %></td>
-      <td><%= @pet.max_weight %></td>
-      <td><%= @pet.max_height%></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+  <%= link_to 'Edit', edit_pet_path(@pet) %> |
+  <%= link_to 'Back', pets_path %>
+</div>
